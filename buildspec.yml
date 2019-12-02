@@ -6,7 +6,7 @@ phases:
       docker: 18
   pre_build:
     commands:
-      - echo Logging in to Amazon ECR...
+      - systemctl start docker
   build:
     commands:
       - echo Build started on `date`
