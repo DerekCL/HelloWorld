@@ -4,6 +4,8 @@ phases:
   install:
     commands:
       - echo starting install
+      - curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.35.1/install.sh | bash
+      - nvm install 10.10.0
   pre_build:
     commands:
       - npm install
