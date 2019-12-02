@@ -2,16 +2,17 @@
 version: 0.2
 phases:
   install:
-    commands:
-      - echo starting install
-      - curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.35.1/install.sh | bash
-      - nvm install 10.10.0
+    runtime-versions:
+      docker: 18
   pre_build:
     commands:
-      - npm install
+      - echo Logging in to Amazon ECR...
   build:
     commands:
-      - npm run start
+      - echo Build started on `date`
+      - echo Building the Docker image...          
+      - docker build -t codebuild:hello-world .   
+      - docker run -p 8080:8080 -d codebuild
   post_build:
     commands:
-      - echo Finishing install
+      - echo Build completed on `date`
